@@ -1,0 +1,8 @@
+- hosts: nodes
+  user: ubuntu
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - join

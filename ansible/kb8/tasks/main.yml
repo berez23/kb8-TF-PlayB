@@ -1,0 +1,7 @@
+---
+# tasks file for kb8
+- name: common
+  include: common.yml
+
+- name: kuber
+  include: kuber.yml

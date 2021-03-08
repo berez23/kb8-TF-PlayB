@@ -1,0 +1,11 @@
+ - name: Create a login user
+     user:
+      name: manager
+      #  groups: # Empty by default, here we give it some groups
+      # - docker
+      # - sudo
+      state: present
+      shell: /bin/bash       # Defaults to /bin/bash
+      system: no             # Defaults to no
+      createhome: yes        # Defaults to yes
+      home: /home/manager  # Defaults to /home/<usernam

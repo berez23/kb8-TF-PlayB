@@ -1,0 +1,4 @@
+---
+# tasks file for master
+- name: master
+  include: master.yml

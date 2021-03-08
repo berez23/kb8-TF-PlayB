@@ -1,0 +1,8 @@
+- hosts: masters
+  user: ubuntu
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - master

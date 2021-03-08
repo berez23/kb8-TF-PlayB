@@ -1,0 +1,27 @@
+
+- hosts: all
+  user: ubuntu
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - kb8
+
+- hosts: masters
+  user: ubuntu
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - master
+
+- hosts: nodes
+  user: ubuntu
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - join

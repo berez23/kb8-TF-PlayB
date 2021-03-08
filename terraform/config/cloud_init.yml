@@ -1,0 +1,23 @@
+#cloud-config
+runcmd:
+ssh_pwauth: true
+disable_root: false
+chpasswd:
+  list: |
+     root:password
+  expire: false
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    home: /home/ubuntu
+    shell: /bin/bash
+    lock_passwd: false
+    ssh-authorized-keys:
+      - ecdsa-sha2-nistp256 AAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBId1THxm0uanFYaSqsPURE9xRYq.....................
+package_update: true
+packages:
+  - qemu-guest-agent
+growpart:
+  mode: auto
+  devices: ['/']

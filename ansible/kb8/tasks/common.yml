@@ -1,0 +1,62 @@
+
+- name: Update apt-get repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+- name: Upgrading all packages (Ubuntu/Debian)
+  apt:
+    upgrade: full
+
+- name: Install common
+  apt:
+   name:
+     - git
+     - htop
+     - tmux
+     - vim
+     - zip
+     - unzip
+   state: latest
+
+- name: unistall nano
+  package:
+    name: nano
+    state: absent
+
+- name: turn one automatic security  pdates
+  package:
+    name: unattended-upgrades
+    state: present
+
+- name: unistall old docker 
+  package: 
+    name:
+      - docker
+      - docker-engine
+      - docker.i
+    state: absent
+
+- name: add docker pub key 
+  apt_key: 
+    url: https://download.docker.com/linux/ubuntu/gpg 
+    state: present 
+
+- name: add docker apt repository
+  apt_repository: 
+    repo: "deb https://download.docker.com/linux/ubuntu bionic stable" 
+    state: present 
+    filename: docker 
+    update_cache: yes
+
+- name: install docker 
+  apt: 
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes 
+
+- name: start docker
+  service:
+     name: docker
+     state: started
+     enabled: yes
